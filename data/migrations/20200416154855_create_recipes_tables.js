@@ -49,5 +49,9 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  
+  return knex.schema
+    .dropTableIfExists('instructions')
+    .dropTableIfExists('recipe_ingredients')
+    .dropTableIfExists('ingredients')
+    .dropTableIfExists('recipes')
 };
