@@ -8,8 +8,6 @@ module.exports = {
     getInstructions
 }
 
-//helper functions go here
-
 function getRecipes(){
     return dB('recipes')
 }
@@ -23,6 +21,10 @@ function getShoppingList(recipe_id){
 }
 
 function getInstructions(recipe_id){
-
+    return dB('instructions as i')
+      .where({recipe_id})
+      .join('recipes as r', 'i.recipe_id', 'r.id')
+      .select('r.name as Recipe_Name', 'i.step_number as Step', 'i.text as Instruction')
+      .orderBy("i.step_number")
 }
 

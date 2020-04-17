@@ -27,6 +27,17 @@ router.get('/:id/ingredients', (req, res)=>{
         })
 })
 
+router.get('/:id/instructions', (req, res)=>{
+    const id = req.params.id
+    Recipes.getInstructions(id)
+      .then(list =>{
+        res.status(200).json(list)
+      })
+      .catch(err =>{
+        res.status(500).json({message: 'Failed to get Instructions from server'})
+    })
+})
+
 
 
 
